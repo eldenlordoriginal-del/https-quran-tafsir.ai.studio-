@@ -1,0 +1,8 @@
+{
+  "name": "Qur'an, Tafsir, & Hadith",
+  "description": "A way to truly understand the beauty of the holy Quran and our messenger Muhammed ﷺ",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

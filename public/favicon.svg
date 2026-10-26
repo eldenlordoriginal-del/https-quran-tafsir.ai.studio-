@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#147B66"/>
+      <stop offset="50%" stop-color="#0F6B58"/>
+      <stop offset="100%" stop-color="#08473A"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE588"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#997A15"/>
+    </linearGradient>
+    <linearGradient id="pagesGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F2ECE1"/>
+      <stop offset="50%" stop-color="#FAF7F2"/>
+      <stop offset="100%" stop-color="#E8DFD0"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Background Book Shadow & Base Shape -->
+  <g filter="url(#shadow)">
+    <!-- Back Cover / Page Edge -->
+    <rect x="10" y="8" width="44" height="48" rx="5" fill="#08382E"/>
+    <!-- Page Block (Gilded / Cream Paper) -->
+    <path d="M14 10 H51 Q54 10 54 13 V51 Q54 54 51 54 H14 Z" fill="url(#pagesGrad)"/>
+    <path d="M50 11 H53 Q55 11 55 13 V51 Q55 53 53 53 H50 Z" fill="url(#goldGrad)" opacity="0.85"/>
+
+    <!-- Front Green Cover -->
+    <rect x="9" y="8" width="42" height="48" rx="4.5" fill="url(#coverGrad)"/>
+
+    <!-- Spine Accent -->
+    <path d="M9 8 H15 V56 H9 Q9 56 9 52 V12 Q9 8 9 8 Z" fill="#0A463A"/>
+    <line x1="15" y1="8" x2="15" y2="56" stroke="url(#goldGrad)" stroke-width="1" opacity="0.7"/>
+    <line x1="12" y1="12" x2="12" y2="52" stroke="url(#goldGrad)" stroke-width="0.75" opacity="0.5" stroke-dasharray="2 2"/>
+
+    <!-- Gold Decorative Border -->
+    <rect x="18" y="12" width="30" height="40" rx="2.5" fill="none" stroke="url(#goldGrad)" stroke-width="1.2"/>
+    <rect x="20" y="14" width="26" height="36" rx="1.5" fill="none" stroke="url(#goldGrad)" stroke-width="0.6" opacity="0.6"/>
+
+    <!-- Corner Accents -->
+    <path d="M19 16 L22 13 M47 16 L44 13 M19 48 L22 51 M47 48 L44 51" stroke="url(#goldGrad)" stroke-width="1"/>
+
+    <!-- Central Rub el Hizb / Islamic Star Ornament -->
+    <g transform="translate(33, 32)">
+      <!-- Outer diamond 1 -->
+      <rect x="-8.5" y="-8.5" width="17" height="17" rx="1.5" fill="none" stroke="url(#goldGrad)" stroke-width="1.2"/>
+      <!-- Outer diamond 2 (rotated 45deg) -->
+      <rect x="-8.5" y="-8.5" width="17" height="17" rx="1.5" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" transform="rotate(45)"/>
+      <!-- Inner medallion -->
+      <circle cx="0" cy="0" r="4.5" fill="url(#goldGrad)"/>
+      <circle cx="0" cy="0" r="2" fill="#0F6B58"/>
+    </g>
+
+    <!-- Silk Ribbon Bookmark -->
+    <path d="M28 8 V24 L31 21 L34 24 V8 Z" fill="url(#goldGrad)"/>
+  </g>
+</svg>
