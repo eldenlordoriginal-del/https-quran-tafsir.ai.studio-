@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X, Check, Headphones, Info, Settings2, ExternalLink } from "lucide-react";
 import { ReciterConfig } from "../types";
 import { useLanguage } from "../context/LanguageContext";
+import { getReciterLocalized } from "../data/reciters";
 
 interface ReciterModalProps {
   isOpen: boolean;
@@ -95,23 +96,36 @@ export const ReciterModal: React.FC<ReciterModalProps> = ({
                   onClick={() => onSelectReciter(reciter)}
                 >
                   <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <h4 className="font-bold text-sm text-[#1F1B16]">
-                        {isRTL ? reciter.arabicName || reciter.name : reciter.name}
-                      </h4>
-                      {isSelected && (
-                        <span className="flex items-center gap-1 rounded-full bg-[#0F6B58] px-2 py-0.5 text-[10px] font-semibold text-white">
-                          <Check className="h-2.5 w-2.5" />
-                          {t("reciter.active")}
-                        </span>
-                      )}
-                    </div>
-                    <span className="font-arabic text-sm text-[#8B6E14] block mt-0.5" dir="rtl">
-                      {isRTL ? reciter.name : reciter.arabicName}
-                    </span>
-                    <p className="text-xs text-[#6B6355] mt-1 font-sans">
-                      {reciter.style}
-                    </p>
+                    {(() => {
+                      const loc = getReciterLocalized(reciter, language);
+                      return (
+                        <>
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-bold text-sm text-[#1F1B16]">
+                              {loc.name}
+                            </h4>
+                            {isSelected && (
+                              <span className="flex items-center gap-1 rounded-full bg-[#0F6B58] px-2 py-0.5 text-[10px] font-semibold text-white">
+                                <Check className="h-2.5 w-2.5" />
+                                {t("reciter.active")}
+                              </span>
+                            )}
+                          </div>
+                          <span className="font-arabic text-sm text-[#8B6E14] block mt-0.5" dir="rtl">
+                            {isRTL ? reciter.name : reciter.arabicName}
+                          </span>
+                          <p className="text-xs text-[#6B6355] mt-1 font-sans">
+                            {loc.style}
+                          </p>
+                          {/* Reciter Notes */}
+                          {loc.notes && (
+                            <p className="mt-2 text-[11px] text-[#7A7265] bg-[#FAF7F0] p-2 rounded-lg border border-[#EFE9DF]">
+                              {loc.notes}
+                            </p>
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -128,13 +142,6 @@ export const ReciterModal: React.FC<ReciterModalProps> = ({
                     </button>
                   </div>
                 </div>
-
-                {/* Reciter Notes */}
-                {reciter.notes && (
-                  <p className="mt-2 text-[11px] text-[#7A7265] bg-[#FAF7F0] p-2 rounded-lg border border-[#EFE9DF]">
-                    {reciter.notes}
-                  </p>
-                )}
 
                 {/* Direct URL Pattern Config Form */}
                 {isEditing && (

@@ -242,4 +242,42 @@ export const HadithApi = {
       };
     }
   },
+
+  /**
+   * Translate Hadith into target language (Persian, Indonesian, Arabic, English)
+   */
+  async translateHadith(
+    hadithId: string,
+    englishText: string,
+    arabicText: string,
+    targetLang: string
+  ): Promise<string> {
+    if (!targetLang || targetLang === "en") return englishText;
+
+    const cacheKey = `hadith_trans_${hadithId}_${targetLang}`;
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) return cached;
+    } catch {}
+
+    try {
+      const res = await fetch("/api/hadith/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hadithId, englishText, arabicText, targetLang })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.translation) {
+          try {
+            localStorage.setItem(cacheKey, data.translation);
+          } catch {}
+          return data.translation;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not translate hadith:", e);
+    }
+    return englishText;
+  },
 };

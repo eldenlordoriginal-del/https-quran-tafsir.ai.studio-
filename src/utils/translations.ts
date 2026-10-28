@@ -65,6 +65,30 @@ export const translations: TranslationsDict = {
     fa: "انتخاب زبان برنامه",
     id: "Pilih Bahasa Situs",
   },
+  "theme.dark": {
+    en: "Dark",
+    ar: "داكن",
+    fa: "تاریک",
+    id: "Gelap",
+  },
+  "theme.light": {
+    en: "Light",
+    ar: "فاتح",
+    fa: "روشن",
+    id: "Terang",
+  },
+  "theme.toggleDark": {
+    en: "Toggle Dark Mode",
+    ar: "تبديل إلى الوضع الداكن",
+    fa: "تغییر به حالت تاریک",
+    id: "Beralih ke Mode Gelap",
+  },
+  "theme.toggleLight": {
+    en: "Toggle Light Mode",
+    ar: "تبديل إلى الوضع الفاتح",
+    fa: "تغییر به حالت روشن",
+    id: "Beralih ke Mode Terang",
+  },
 
   // Main Nav Tabs
   "nav.quran": {

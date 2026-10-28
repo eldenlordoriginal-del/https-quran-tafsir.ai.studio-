@@ -240,7 +240,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF8F2] bg-islamic-pattern text-[#2B2620] flex flex-col selection:bg-[#0F6B58]/20 selection:text-[#0F6B58]">
+    <div className="min-h-screen bg-[#FBF8F2] dark:bg-[#0E1311] bg-islamic-pattern text-[#2B2620] dark:text-[#EDE8DF] flex flex-col selection:bg-[#0F6B58]/20 dark:selection:bg-[#1E826C]/30 selection:text-[#0F6B58] dark:selection:text-[#1E826C] transition-colors duration-200">
       {/* Persistent App Header */}
       <Header
         activeTab={activeTab}

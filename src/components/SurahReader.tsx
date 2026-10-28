@@ -157,7 +157,7 @@ export const SurahReader: React.FC<SurahReaderProps> = ({
                 key={s}
                 onClick={() => setFontSizeClass(s)}
                 className={`px-2 py-1 rounded-md uppercase font-medium transition ${
-                  fontSizeClass === s ? "bg-[#2B2620] text-white" : "text-[#7A7265] hover:text-[#2B2620]"
+                  fontSizeClass === s ? "bg-[#2B2620] dark:bg-[#0F6B58] text-white shadow-xs" : "text-[#7A7265] dark:text-[#D6CEC1] hover:text-[#2B2620] dark:hover:text-white"
                 }`}
               >
                 {s}
@@ -168,7 +168,7 @@ export const SurahReader: React.FC<SurahReaderProps> = ({
       </div>
 
       {/* Surah Title Banner */}
-      <div className="stripe-card relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-[#FCFAF6] to-[#F7F2E8] p-6 sm:p-8 text-center mb-8 border border-[#E6E0D4]">
+      <div className="stripe-card relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-[#FCFAF6] to-[#F7F2E8] dark:from-[#17211C] dark:via-[#141C19] dark:to-[#121815] p-6 sm:p-8 text-center mb-8 border border-[#E6E0D4] dark:border-[#27352F]">
         <div className="inline-flex items-center gap-2 rounded-full bg-[#0F6B58]/10 px-3 py-1 text-xs font-semibold text-[#0F6B58] mb-3">
           {language === "ar"
             ? `سورة رقم ${surah.number} • ${surah.revelationType === "Meccan" ? "مكية" : "مدنية"} • ${surah.numberOfAyahs} آيات`

@@ -1,10 +1,28 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
+  :root {
+    color-scheme: light;
+  }
+  
+  :root.dark,
+  html.dark {
+    color-scheme: dark;
+  }
+
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #FBF8F2;
     color: #2B2620;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  html.dark body,
+  .dark body {
+    background-color: #0E1311;
+    color: #FAF7F2;
   }
 }
 
@@ -27,6 +45,15 @@
   background-opacity: 0.03;
 }
 
+html.dark .bg-islamic-pattern,
+.dark .bg-islamic-pattern {
+  background-color: #0E1311;
+  background-image: radial-gradient(#1B8A72 0.6px, transparent 0.6px), radial-gradient(#C9A227 0.6px, #0E1311 0.6px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+  background-opacity: 0.04;
+}
+
 /* Stripe-like card styling and micro-elevation */
 .stripe-card {
   background: #FFFFFF;
@@ -38,6 +65,196 @@
 .stripe-card:hover {
   border-color: rgba(15, 107, 88, 0.25);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05), 0 12px 28px -6px rgba(15, 107, 88, 0.06);
+}
+
+html.dark .stripe-card,
+.dark .stripe-card {
+  background: #141C19;
+  border-color: #26332D;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35), 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+}
+
+html.dark .stripe-card:hover,
+.dark .stripe-card:hover {
+  border-color: rgba(27, 138, 114, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 12px 28px -6px rgba(15, 107, 88, 0.25);
+}
+
+/* =========================================================================
+   COMPREHENSIVE DARK MODE TEXT COLOR PALETTE (HIGH VISIBILITY & CONTRAST)
+   All body text, translations, arabic, isnad, matn, commentary, descriptions,
+   notes, metadata, and labels are mapped to crisp, light, legible tones.
+   Section titles (Qur'an, Hadith, Reciters List, etc.) retain their distinct
+   branded heading prominence.
+   ========================================================================= */
+
+/* Primary content text: Translations, Arabic Matn, Quranic Verses, Hadith Matn, Card Headings */
+html.dark .text-\[\#1A1612\],
+html.dark .text-\[\#1E1B18\],
+html.dark .text-\[\#1F1A14\],
+html.dark .text-\[\#1F1B16\],
+html.dark .text-\[\#1F1C18\],
+html.dark .text-\[\#221D17\],
+html.dark .text-\[\#2A241C\],
+html.dark .text-\[\#2B2620\],
+html.dark .text-\[\#2C2419\],
+html.dark .text-\[\#2E281F\],
+html.dark .text-\[\#3A342B\],
+html.dark .text-\[\#3B342A\],
+html.dark .text-\[\#3D372E\],
+html.dark .text-stone-900,
+html.dark .text-stone-800 {
+  color: #FAF7F2;
+}
+
+/* Secondary body text: Commentary, Isnad Narrators, Explanations, Reciter Styles, Notes */
+html.dark .text-\[\#4A4337\],
+html.dark .text-\[\#4E463A\],
+html.dark .text-\[\#554C3D\],
+html.dark .text-\[\#5A5245\],
+html.dark .text-\[\#5C5549\],
+html.dark .text-\[\#5F5647\],
+html.dark .text-\[\#5F584C\],
+html.dark .text-stone-700 {
+  color: #E8E2D5;
+}
+
+/* Metadata, Subtitles, Verse Numbers, Labels, Tags, Counts, Transliteration, Hints */
+html.dark .text-\[\#6B6152\],
+html.dark .text-\[\#6B6355\],
+html.dark .text-\[\#6E6455\],
+html.dark .text-\[\#7A7265\],
+html.dark .text-\[\#807664\],
+html.dark .text-\[\#8C8373\],
+html.dark .text-\[\#8C8375\],
+html.dark .text-\[\#9C9486\],
+html.dark .text-\[\#A0988A\],
+html.dark .text-\[\#A7A092\],
+html.dark .text-\[\#B5AD9F\],
+html.dark .text-\[\#DCD5C8\] {
+  color: #D6CEC1;
+}
+
+/* Arabic typography clarity and brilliance in dark mode */
+html.dark .font-arabic,
+html.dark .font-scheherazade {
+  color: #FAF7F2;
+}
+
+/* Badges and authority tags */
+html.dark .text-emerald-950,
+html.dark .text-emerald-900,
+html.dark .text-emerald-800 {
+  color: #6EE7B7;
+}
+
+html.dark .text-amber-950,
+html.dark .text-amber-900,
+html.dark .text-amber-800 {
+  color: #FCD34D;
+}
+
+html.dark .bg-emerald-100,
+html.dark .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+html.dark .bg-amber-100,
+html.dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+html.dark .bg-stone-200 {
+  background-color: #24312A;
+}
+
+/* Base surface overrides in dark mode */
+html.dark .bg-white {
+  background-color: #151D1A;
+}
+
+html.dark .bg-\[\#FBF8F2\] {
+  background-color: #0E1311;
+}
+
+html.dark .bg-\[\#FBF8F2\]\/95 {
+  background-color: rgba(14, 19, 17, 0.95);
+}
+
+html.dark .border-\[\#E5DFD5\],
+html.dark .border-\[\#E8E2D8\],
+html.dark .border-\[\#E2DDD3\],
+html.dark .border-\[\#E0D9CD\],
+html.dark .border-\[\#DCD5C8\],
+html.dark .border-\[\#DDD5C7\],
+html.dark .border-\[\#D9D2C5\],
+html.dark .border-\[\#ECE5D8\],
+html.dark .border-\[\#E6E0D4\] {
+  border-color: #27352F;
+}
+
+html.dark .bg-\[\#FAF8F3\],
+html.dark .bg-\[\#FAF7F0\],
+html.dark .bg-\[\#F5F0E6\],
+html.dark .bg-\[\#F7F3EB\],
+html.dark .bg-\[\#F2ECE1\],
+html.dark .bg-\[\#F5F0E6\]\/60 {
+  background-color: #1B2520;
+}
+
+html.dark .bg-\[\#F2EDE4\],
+html.dark .bg-\[\#EFEAE1\] {
+  background-color: #222E28;
+}
+
+html.dark .bg-\[\#FCFAF6\],
+html.dark .bg-\[\#F7F2E8\],
+html.dark .bg-\[\#F4EFE6\],
+html.dark .bg-\[\#FAF7F2\],
+html.dark .bg-\[\#F7F4EC\],
+html.dark .bg-\[\#F7F4EE\],
+html.dark .bg-\[\#F6F2E9\],
+html.dark .bg-\[\#F8F5EE\],
+html.dark .bg-\[\#FBF9F5\],
+html.dark .bg-\[\#FFFDF9\],
+html.dark .bg-\[\#FCFBF8\] {
+  background-color: #17211C;
+}
+
+html.dark .border-\[\#F4EFE6\],
+html.dark .border-\[\#F5F0E6\],
+html.dark .border-\[\#F5EFE6\],
+html.dark .border-\[\#F2ECE1\],
+html.dark .border-\[\#EFE9DF\],
+html.dark .border-\[\#EBDDBF\],
+html.dark .border-\[\#E9E3D5\],
+html.dark .border-\[\#E6DFD1\],
+html.dark .border-\[\#E8DFC9\],
+html.dark .border-\[\#E8E2D6\],
+html.dark .border-\[\#F0EBE1\] {
+  border-color: #283630;
+}
+
+html.dark input[type="text"],
+html.dark input[type="search"],
+html.dark input[type="number"],
+html.dark select {
+  background-color: #151D1A;
+  color: #FAF7F2;
+  border-color: #27352F;
+}
+
+html.dark select option {
+  background-color: #151D1A;
+  color: #FAF7F2;
+}
+
+html.dark input[type="text"]::placeholder,
+html.dark input[type="search"]::placeholder,
+html.dark input[type="number"]::placeholder {
+  color: #B5AD9F;
 }
 
 /* Custom delicate scrollbar */
@@ -54,4 +271,10 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #0F6B58;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2D3A34;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #1B8A72;
 }

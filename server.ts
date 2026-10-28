@@ -68,6 +68,65 @@ async function startServer() {
     }
   });
 
+  // In-memory translation cache for hadiths
+  const hadithTranslationCache = new Map<string, string>();
+
+  // Hadith Translation endpoint for Persian, Indonesian, Arabic, and English
+  app.post("/api/hadith/translate", async (req, res) => {
+    try {
+      const { hadithId, englishText, arabicText, targetLang } = req.body;
+      const lang = targetLang || "en";
+      if (!englishText && !arabicText) {
+        return res.status(400).json({ error: "Missing text to translate" });
+      }
+
+      if (lang === "en") {
+        return res.json({ translation: englishText, language: "en" });
+      }
+
+      const cacheKey = `${hadithId || "hadith"}_${lang}`;
+      if (hadithTranslationCache.has(cacheKey)) {
+        return res.json({ translation: hadithTranslationCache.get(cacheKey), language: lang, cached: true });
+      }
+
+      const ai = getGenAI();
+      if (!ai) {
+        return res.json({ translation: englishText, language: "en", fallback: true });
+      }
+
+      const langName =
+        lang === "fa"
+          ? "Persian (فارسی روان، شیوا و اصیل اسلامی)"
+          : lang === "id"
+          ? "Indonesian (Bahasa Indonesia yang santun dan baku)"
+          : lang === "ar"
+          ? "Arabic (شرح وبيان المعنى باللغة العربية الفصحى)"
+          : "English";
+
+      const prompt = `You are an expert Islamic scholar and classical translator.
+Translate the following sacred Hadith faithfully into ${langName}.
+Guidelines:
+1. Preserve divine names and prophetic salutations respectfully (e.g. Allah (azwj), Prophet Muhammad ﷺ, Imam Ali (asws), etc.).
+2. Translate both the isnad narration chain and matn text accurately.
+3. Output ONLY the translated text. Do NOT include any explanations, bullet points, options, or conversational preamble.
+
+Text:
+"${englishText || arabicText}"`;
+
+      const result = await ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: prompt,
+      });
+
+      const translated = result.text?.trim() || englishText;
+      hadithTranslationCache.set(cacheKey, translated);
+      return res.json({ translation: translated, language: lang });
+    } catch (err: any) {
+      console.warn("Hadith translation warning:", err.message);
+      return res.json({ translation: req.body.englishText, language: "en", fallback: true });
+    }
+  });
+
   // Classical Authentic Tafsir endpoint (Sunni & Shia Authentic Scholarly Books & Commentators)
   app.post("/api/explain", async (req, res) => {
     try {

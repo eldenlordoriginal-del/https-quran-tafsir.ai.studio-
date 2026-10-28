@@ -35,6 +35,7 @@ export interface ReciterConfig {
   surahUrlPattern: string; // e.g., "https://cdn.islamic.network/quran/audio-surah/128/{reciterId}-surah/{surahNumber}.mp3"
   isCustomUrl?: boolean;
   notes?: string;
+  localized?: Partial<Record<AppLanguage, { name?: string; style?: string; notes?: string }>>;
 }
 
 export interface Bookmark {
@@ -127,6 +128,7 @@ export interface HadithBookMetadata {
   totalSections?: number;
   description: string;
   isMajorSix?: boolean;
+  localized?: Partial<Record<AppLanguage, { title?: string; author?: string; description?: string }>>;
 }
 
 export interface HadithSectionMetadata {
@@ -150,6 +152,7 @@ export interface HadithItem {
   narrator: string; // Narrator / chain beginning
   arabicText: string;
   englishTranslation: string;
+  translations?: Partial<Record<AppLanguage, string>>; // Translations in other languages (Persian, Indonesian, Arabic)
   grading: string; // Authentic status, e.g. "Sahih", "Muttafaqun 'Alayh"
   scholarlyGradingDetail: string; // Specific source of grading, e.g. "Muttafaqun 'Alayh (Agreed upon)" or "Sahih (Mir'at al-Uqul by Allamah al-Majlisi)"
   topic: string; // Category, e.g. "Faith & Intentions", "Knowledge", "Character", "Parents", "Justice"
